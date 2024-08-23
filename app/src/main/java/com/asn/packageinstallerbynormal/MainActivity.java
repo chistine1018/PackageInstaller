@@ -68,7 +68,10 @@ public final class MainActivity extends Activity {
 
 //        textView.setText(getInfo());
         button.setText("install app");
-        button.setOnClickListener((v) -> executor.submit(() -> APKInstall.installapk(this, apk)));
+        // install
+//        button.setOnClickListener((v) -> executor.submit(() -> APKInstall.installapk(this, apk)));
+        // uninstall
+        button.setOnClickListener((v) -> executor.submit(() -> APKInstall.uninstall(this, "com.auodplus.adm.android.agent.debug")));
         switchView.setOnCheckedChangeListener((v, isChecked) -> setBgInstall(isChecked));
         setBgInstall(bgInstall);
     }

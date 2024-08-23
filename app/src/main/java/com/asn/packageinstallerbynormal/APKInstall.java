@@ -16,9 +16,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageInstaller;
 import android.content.pm.PackageInstaller.Session;
 import android.content.pm.PackageInstaller.SessionParams;
 import android.graphics.drawable.Icon;
+import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
 
@@ -52,6 +54,16 @@ public final class APKInstall {
         }
     }
 
+    public static void uninstall(Context context, String name){
+        // for system app
+//        PackageInstaller packageInstaller = context.getPackageManager().getPackageInstaller();
+//        packageInstaller.uninstall(name, null);
+
+        // for normal app
+        Uri uri = Uri.parse("package:" + name);
+        Intent intent = new Intent(Intent.ACTION_DELETE, uri);
+        context.startActivity(intent);;
+    }
 
     private static void transfer(InputStream in, OutputStream out) throws IOException {
         int size = 8192;
